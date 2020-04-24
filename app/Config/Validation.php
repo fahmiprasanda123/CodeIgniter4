@@ -30,6 +30,24 @@ class Validation
 		'single' => 'CodeIgniter\Validation\Views\single',
 	];
 
+	public $data = [
+		'name'         => 'required',
+		'phone'       => 'required',
+		'address'	=> 'required'
+	];
+	 
+	public $data_errors = [
+		'name'=> [
+			'required'  => 'Nama wajib diisi.'
+		],
+		'phone'=> [
+			'required'  => 'nomor hp wajib diisi.'
+		],
+		'address'=> [
+			'required'  => 'Alamat Wajib diisi.'
+		]
+	];
+
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------

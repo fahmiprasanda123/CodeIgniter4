@@ -32,7 +32,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'First::index');
 $routes->resource('Data');
-$routes->get('Data/(:segment)', 'Data::show/$1');
+$routes->get('Data/new',             'Data::Data');
+$routes->post('Data',                'Data::create');
+$routes->get('Data',                 'Data::index');
+$routes->get('Data/(:segment)',      'Data::show/$1');
+$routes->get('Data/(:segment)/edit', 'Data::edit/$1');
+$routes->put('Data/(:segment)',      'Data::update/$1');
+$routes->patch('Data/(:segment)',    'Data::update/$1');
+$routes->delete('Data/(:segment)',   'Data::delete/$1');
 
 /**
  * --------------------------------------------------------------------
