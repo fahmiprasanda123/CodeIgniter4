@@ -81,36 +81,73 @@ class Data extends ResourceController
             ];
         }
     }
+    // public function update($id = NULL){
+    //     $validation =  \Config\Services::validation();
+    //     $name   = $this->request->getRawInput('name');
+    //     $phone = $this->request->getRawInput('phone');
+    //     $address = $this->request->getRawInput('address');
+    //     $data = [
+    //         'name' => $name,
+    //         'phone' => $phone,
+    //         'address' => $address
+    //     ];
+    //     if($validation->run($data, 'data') == FALSE){
+    //         $response = [
+    //             'status' => 500,
+    //             'error' => true,
+    //             'data' => $validation->getErrors(),
+    //         ];
+    //         return $this->respond($response, 500);
+    //     } else {
+    //         $simpan = $this->model->updateData($data,$id);
+    //         if($simpan){
+    //             $msg = ['message' => 'Updated Data successfully'];
+    //             $response = [
+    //                 'status' => 200,
+    //                 'error' => false,
+    //                 'data' => $msg,
+    //             ];
+    //             return $this->respond($response, 200);
+    //         }
+    //     }
+    // }
     public function update($id = NULL){
-        $validation =  \Config\Services::validation();
-        $name   = $this->request->getRawInput('name');
-        $phone = $this->request->getRawInput('phone');
-        $address = $this->request->getRawInput('address');
-        $data = [
-            'name' => $name,
-            'phone' => $phone,
-            'address' => $address
+    $validation =  \Config\Services::validation();
+ 
+    // $name   = $this->request->getRawInput('category_name');
+    // $status = $this->request->getRawInput('category_status');
+ 
+    $data = $this->request->getRawInput();
+ 
+    // $data = [
+    //     'category_name' => $name,
+    //     'category_status' => $status 
+    // ];
+ 
+    if($validation->run($data, 'data') == FALSE){
+ 
+        $response = [                                                                                       
+            'status' => 500,
+            'error' => true,
+            'data' => $validation->getErrors(),
         ];
-        if($validation->run($data, 'data') == FALSE){
+        return $this->respond($response, 500);
+ 
+    } else {
+ 
+        $simpan = $this->model->updateData($data,$id);
+        if($simpan){
+            $msg = ['message' => 'Updated category successfully'];
             $response = [
-                'status' => 500,
-                'error' => true,
-                'data' => $validation->getErrors(),
+                'status' => 200,
+                'error' => false,
+                'data' => $msg,
             ];
-            return $this->respond($response, 500);
-        } else {
-            $simpan = $this->model->updateData($data,$id);
-            if($simpan){
-                $msg = ['message' => 'Updated Data successfully'];
-                $response = [
-                    'status' => 200,
-                    'error' => false,
-                    'data' => $msg,
-                ];
-                return $this->respond($response, 200);
-            }
-        }
+            return $this->respond($response, 200);
+        } 
+         
     }
+}
     public function delete($id = NULL){
         $hapus = $this->model->deleteData($id);
         if($hapus){
